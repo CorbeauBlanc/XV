@@ -4,3 +4,6 @@
 /obj
 /Packages
 /Temp
+Assets/Scripts/FPSCameraBehaviour.cs
+
+*.meta
