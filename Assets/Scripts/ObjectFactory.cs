@@ -10,7 +10,13 @@ public class ObjectFactory : MonoBehaviour
 {
 	[SerializeField] private GameObject template;
 
-	void Start() {}
+	private MeshFilter templateMesh;
+
+	void Start() {
+		templateMesh = template.GetComponentInChildren<MeshFilter>();
+		//templateMesh.mesh = new ObjImp
+
+	}
 
 	public void NewObjectOnPosition(Vector3 pos) {
 		Instantiate(template, pos, Quaternion.identity);
