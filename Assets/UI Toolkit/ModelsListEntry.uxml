@@ -1,0 +1,5 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <ui:VisualElement name="ListEntry" style="height: 50px; background-color: rgba(0, 0, 0, 0.33); flex-direction: row; padding-left: 10px; padding-right: 10px; padding-top: 10px; padding-bottom: 10px;">
+        <ui:Label display-tooltip-when-elided="true" name="AssetName" style="flex-grow: 1; font-size: 25px; -unity-text-align: middle-left; transition-property: background-color; transition-duration: 200ms;" />
+    </ui:VisualElement>
+</ui:UXML>

@@ -3,9 +3,12 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using Valve.VR.InteractionSystem;
 
 public class ObjectFactory : MonoBehaviour
 {
+	public static string assetBundlesPath = Path.Combine(Application.streamingAssetsPath, "ObjectsModels");
+
 	[SerializeField] private GameObject obj;
 
 	private Dictionary<string, GameObject> assets = new Dictionary<string, GameObject>();
@@ -14,7 +17,7 @@ public class ObjectFactory : MonoBehaviour
 		AssetBundle loadedBundle;
 
 		if (assets.ContainsKey(name)) return assets[name];
-		if ((loadedBundle = AssetBundle.LoadFromFile(Path.Combine(Application.streamingAssetsPath, "ObjectsModels", name))) == null)
+		if ((loadedBundle = AssetBundle.LoadFromFile(Path.Combine(assetBundlesPath, name))) == null)
 			throw (new Exception("ObjectFactory: LoadAssetBundle: " + name + " could not be loaded"));
 		assets.Add(name, loadedBundle.LoadAsset<GameObject>(name));
 		return assets[name];
