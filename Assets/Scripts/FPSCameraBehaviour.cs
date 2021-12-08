@@ -16,12 +16,9 @@ public class FPSCameraBehaviour : MonoBehaviour
 
 	public GameObject debugObject;
 
-	private float virtualScreenDistance;
-
 	// Start is called before the first frame update
 	void Start()
 	{
-		virtualScreenDistance = (Screen.height / 2) / Mathf.Tan((fpsCamera.fieldOfView / 2) * Mathf.Deg2Rad);
 	}
 
 	private void UpdateCameraOrientation() {
@@ -49,12 +46,7 @@ public class FPSCameraBehaviour : MonoBehaviour
 
 	private RaycastHit GetMousePointingTarget() {
 		RaycastHit hit;
-		Vector3 rayDirection = Vector3.Normalize(new Vector3(
-			Input.mousePosition.x - Screen.width / 2,
-			Input.mousePosition.y - Screen.height / 2,
-			virtualScreenDistance));
-		rayDirection = fpsCamera.transform.rotation * rayDirection;
-		Physics.Raycast(transform.position, rayDirection, out hit, fpsCamera.farClipPlane, LayerMask.GetMask("Default"));
+		Physics.Raycast(fpsCamera.ScreenPointToRay(Input.mousePosition), out hit, fpsCamera.farClipPlane, LayerMask.GetMask("Default"));
 		return hit;
 	}
 

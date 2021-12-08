@@ -4,6 +4,6 @@
 /obj
 /Packages
 /Temp
-Assets/Scripts/FPSCameraBehaviour.cs
+/Assets/AssetBundles/*
 
 *.meta
