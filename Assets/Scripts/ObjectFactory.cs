@@ -1,28 +1,39 @@
 
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
+using System.IO;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class ObjectFactory : MonoBehaviour
 {
-	[SerializeField] private GameObject template;
+	[SerializeField] private GameObject obj;
 
-	private MeshFilter templateMesh;
+	private Dictionary<string, GameObject> assets = new Dictionary<string, GameObject>();
+
+	private GameObject LoadAsset(string name) {
+		AssetBundle loadedBundle;
+
+		if (assets.ContainsKey(name)) return assets[name];
+		if ((loadedBundle = AssetBundle.LoadFromFile(Path.Combine(Application.streamingAssetsPath, "ObjectsModels", name))) == null)
+			throw (new Exception("ObjectFactory: LoadAssetBundle: " + name + " could not be loaded"));
+		assets.Add(name, loadedBundle.LoadAsset<GameObject>(name));
+		return assets[name];
+	}
 
 	void Start() {
-		templateMesh = template.GetComponentInChildren<MeshFilter>();
-		//templateMesh.mesh = new ObjImp
-
+		try {
+			obj = LoadAsset("1m3_crate");
+		}
+		catch (System.Exception) {
+			throw;
+		}
 	}
 
 	public void NewObjectOnPosition(Vector3 pos) {
-		Instantiate(template, pos, Quaternion.identity);
+		Instantiate(obj, pos, Quaternion.identity);
 	}
 
 	public void NewObjectOnPosition(Vector3 pos, Quaternion rot) {
-		Instantiate(template, pos, rot);
+		Instantiate(obj, pos, rot);
 	}
 }

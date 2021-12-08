@@ -12,7 +12,7 @@ public class CreateAssetBundles
 			Directory.CreateDirectory(assetBundleDirectory);
 		}
 		BuildPipeline.BuildAssetBundles(assetBundleDirectory,
-										BuildAssetBundleOptions.None,
-										BuildTarget.StandaloneWindows);
+										BuildAssetBundleOptions.UncompressedAssetBundle,
+										BuildTarget.StandaloneWindows64);
 	}
 }

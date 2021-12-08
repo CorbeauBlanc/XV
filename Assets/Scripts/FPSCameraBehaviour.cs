@@ -14,8 +14,6 @@ public class FPSCameraBehaviour : MonoBehaviour
 
 	[SerializeField] private ObjectFactory factory;
 
-	public GameObject debugObject;
-
 	// Start is called before the first frame update
 	void Start()
 	{
