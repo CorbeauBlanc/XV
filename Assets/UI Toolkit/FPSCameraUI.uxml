@@ -1,6 +1,7 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
-    <ui:VisualElement name="Layout" style="flex-shrink: 0; flex-grow: 1; flex-direction: row;">
-        <ui:ListView focusable="true" name="ModelsList" style="flex-shrink: 1; flex-grow: 0; flex-basis: 20%;" />
+    <Style src="project://database/Assets/UI%20Toolkit/Themes/main.uss?fileID=7433441132597879392&amp;guid=5feacff40ea03324e8d3da9b967e9051&amp;type=3#main" />
+    <ui:VisualElement name="Layout" style="width: 100%; height: 100%; flex-direction: row; max-height: 100%; max-width: 100%;">
+        <ui:ListView focusable="true" name="ModelsList" fixed-item-height="50" style="flex-basis: 20%; overflow: hidden;" />
         <ui:VisualElement name="PreviewContainer" style="margin-right: 0; flex-basis: 60%; align-items: center; justify-content: space-around;">
             <ui:VisualElement name="PreviewImage" style="visibility: visible; display: none;" />
         </ui:VisualElement>

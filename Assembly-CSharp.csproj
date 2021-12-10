@@ -41,10 +41,11 @@
      <Compile Include="Assets\Scripts\AssetData.cs" />
      <Compile Include="Assets\Scripts\FPSCameraBehaviour.cs" />
      <Compile Include="Assets\Scripts\UI\ModelsListController.cs" />
-     <Compile Include="Assets\Scripts\UI\ModelsListEntryController.cs" />
      <Compile Include="Assets\Scripts\UI\FPSCameraUI.cs" />
+     <Compile Include="Assets\Scripts\UI\ModelsListEntryController.cs" />
      <None Include="Assets\UI Toolkit\ModelsListEntry.uxml" />
      <None Include="Assets\UI Toolkit\FPSCameraUI.uxml" />
+     <None Include="Assets\UI Toolkit\Themes\main.uss" />
     <Reference Include="UnityEngine">
         <HintPath>C:\Program Files\Unity\Hub\Editor\2021.2.5f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
     </Reference>
