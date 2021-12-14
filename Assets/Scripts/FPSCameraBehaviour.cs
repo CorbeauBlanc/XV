@@ -51,7 +51,7 @@ public class FPSCameraBehaviour : MonoBehaviour
 	private void HandleClicEvent() {
 		RaycastHit hit = GetMousePointingTarget();
 		if (Input.GetMouseButtonUp(0) && hit.collider != null)
-			factory.NewObjectOnPosition(hit.point);
+			factory.NewObjectOnPosition("1m3_crate", hit.point);
 	}
 
 	// Update is called once per frame

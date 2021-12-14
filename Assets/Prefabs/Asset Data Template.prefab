@@ -57,8 +57,6 @@ MonoBehaviour:
     value: {fileID: 8786345551929152877}
   - key: Anchor Right
     value: {fileID: 8786345550981247667}
-  - key: Anchor Right
-    value: {fileID: 8786345550981247667}
 --- !u!1 &8786345550981247664
 GameObject:
   m_ObjectHideFlags: 0

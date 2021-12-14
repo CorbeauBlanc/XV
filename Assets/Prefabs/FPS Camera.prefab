@@ -10,8 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4294768477793250154}
   - component: {fileID: 4294768477793250155}
-  - component: {fileID: 1452550800944437061}
-  - component: {fileID: 7393911356169662722}
   m_Layer: 0
   m_Name: FPS Camera
   m_TagString: Untagged
@@ -52,37 +50,6 @@ MonoBehaviour:
   movementSpeed: 0.5
   mouseSensitivity: 0.5
   factory: {fileID: 0}
---- !u!114 &1452550800944437061
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4294768477793250156}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 19102, guid: 0000000000000000e000000000000000, type: 0}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_PanelSettings: {fileID: 11400000, guid: f815d25a8a6c1ee43bff249033d42cbc, type: 2}
-  m_ParentUI: {fileID: 0}
-  sourceAsset: {fileID: 9197481963319205126, guid: 242fafde2318451449e0b1c3dec659b6,
-    type: 3}
-  m_SortingOrder: 0
---- !u!114 &7393911356169662722
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4294768477793250156}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 07dd58939bd36f943be25d732ea9b690, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  modelsListEntry: {fileID: 9197481963319205126, guid: 62447936cf594cd42b9623511d64f6ae,
-    type: 3}
 --- !u!1 &4294768478830665608
 GameObject:
   m_ObjectHideFlags: 0

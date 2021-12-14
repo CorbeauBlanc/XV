@@ -45,6 +45,11 @@
     background-color: rgb(161, 161, 161);
 }
 
+.unity-collection-view__item--selected {
+    background-color: rgb(101, 101, 101);
+    color: rgba(255, 255, 255, 255);
+}
+
 .list-entry {
     background-color: rgba(0, 0, 0, 0.33);
     flex-direction: row;
@@ -52,12 +57,4 @@
     padding-right: 10px;
     padding-top: 10px;
     padding-bottom: 10px;
-}
-
-.list-entry:focus {
-    background-color: rgba(77, 77, 77, 0.78);
-    border-left-width: 0;
-    border-right-width: 0;
-    border-top-width: 0;
-    border-bottom-width: 0;
 }

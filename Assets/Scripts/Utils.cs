@@ -22,7 +22,7 @@ public class UDictionary<T, U> : List<UDictionaryItem<T, U>> {
 
 	public Dictionary<T, U> ToDictionary() {
 		Dictionary<T, U> dictionnary = new Dictionary<T, U>();
-		ForEach(delegate(UDictionaryItem<T, U> item) {
+		ForEach((UDictionaryItem<T, U> item) => {
 			dictionnary.Add(item.key, item.value);
 		});
 		return dictionnary;

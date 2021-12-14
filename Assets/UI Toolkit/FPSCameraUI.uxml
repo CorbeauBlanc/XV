@@ -3,7 +3,7 @@
     <ui:VisualElement name="Layout" style="width: 100%; height: 100%; flex-direction: row; max-height: 100%; max-width: 100%;">
         <ui:ListView focusable="true" name="ModelsList" fixed-item-height="50" style="flex-basis: 20%; overflow: hidden;" />
         <ui:VisualElement name="PreviewContainer" style="margin-right: 0; flex-basis: 60%; align-items: center; justify-content: space-around;">
-            <ui:VisualElement name="PreviewImage" style="visibility: visible; display: none;" />
+            <ui:VisualElement name="PreviewImage" style="visibility: visible; display: none; background-image: url(&apos;project://database/Assets/UI%20Toolkit/Preview%20Camera%20Render%20Texture.renderTexture?fileID=8400000&amp;guid=c4f7e08e7cfb8f64e8aab1adadc3413c&amp;type=2#Preview Camera Render Texture&apos;); width: 256px; height: 256px;" />
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

@@ -3,17 +3,17 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
-using Valve.VR.InteractionSystem;
 
 public class ObjectFactory : MonoBehaviour
 {
+	public static ObjectFactory instance {get; private set;}
 	public static string assetBundlesPath = Path.Combine(Application.streamingAssetsPath, "ObjectsModels");
 
 	[SerializeField] private GameObject obj;
 
 	private Dictionary<string, GameObject> assets = new Dictionary<string, GameObject>();
 
-	private GameObject LoadAsset(string name) {
+	public GameObject LoadAsset(string name) {
 		AssetBundle loadedBundle;
 
 		if (assets.ContainsKey(name)) return assets[name];
@@ -24,6 +24,7 @@ public class ObjectFactory : MonoBehaviour
 	}
 
 	void Start() {
+		ObjectFactory.instance = this;
 		try {
 			obj = LoadAsset("1m3_crate");
 		}
@@ -32,11 +33,16 @@ public class ObjectFactory : MonoBehaviour
 		}
 	}
 
-	public void NewObjectOnPosition(Vector3 pos) {
-		Instantiate(obj, pos, Quaternion.identity);
+	public GameObject NewObjectOnPosition(string name, Vector3 pos, string objAnchor = "") {
+		GameObject obj = LoadAsset(name);
+		return NewObjectOnPosition(obj, pos, objAnchor);
 	}
 
-	public void NewObjectOnPosition(Vector3 pos, Quaternion rot) {
-		Instantiate(obj, pos, rot);
+	public GameObject NewObjectOnPosition(GameObject obj, Vector3 pos, string objAnchor = "") {
+		if (objAnchor != "") {
+			Transform anchor = obj.GetComponent<AssetData>().anchorsList[objAnchor];
+			return Instantiate(obj, pos + anchor.position, anchor.rotation);
+		}
+		return Instantiate(obj, pos, Quaternion.identity);
 	}
 }
