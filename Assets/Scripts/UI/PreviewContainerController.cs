@@ -15,12 +15,17 @@ public class PreviewContainerController
 	}
 
 	public void SetModelToPreview(string name) {
-		previewImage.style.display = StyleKeyword.Initial;
 		GameObject model = ObjectFactory.instance.LoadAsset(name);
+		AssetData modelData = model.GetComponent<AssetData>();
+
+		previewImage.style.display = StyleKeyword.Initial;
 		model.GetComponentsInChildren<MeshFilter>().ForEach((MeshFilter component) => {
 			component.gameObject.layer = LayerMask.NameToLayer("UI");
 		});
+		modelData.AddStartMethod(() => {
+
+		});
 		Object.Destroy(currentModel);
-		currentModel = ObjectFactory.instance.NewObjectOnPosition(model, modelAnchor.position);
+		currentModel = ObjectFactory.instance.NewObjectOnPosition(model, modelAnchor, Anchor.MIDDLE);
 	}
 }

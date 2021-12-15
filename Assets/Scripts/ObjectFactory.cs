@@ -4,12 +4,25 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
+public enum Anchor {
+	FRONT,
+	BACK,
+	LEFT,
+	RIGHT,
+	MIDDLE,
+	NONE,
+}
+
 public class ObjectFactory : MonoBehaviour
 {
 	public static ObjectFactory instance {get; private set;}
 	public static string assetBundlesPath = Path.Combine(Application.streamingAssetsPath, "ObjectsModels");
 
-	[SerializeField] private GameObject obj;
+	public static string GetAnchorName(Anchor anchor) {
+		return anchorNames[(int)anchor];
+	}
+
+	private static string[] anchorNames = new string[] { "Anchor Front", "Anchor Back", "Anchor Left", "Anchor Right", "Anchor True Middle", "" };
 
 	private Dictionary<string, GameObject> assets = new Dictionary<string, GameObject>();
 
@@ -25,24 +38,25 @@ public class ObjectFactory : MonoBehaviour
 
 	void Start() {
 		ObjectFactory.instance = this;
-		try {
-			obj = LoadAsset("1m3_crate");
-		}
-		catch (System.Exception) {
-			throw;
-		}
 	}
 
-	public GameObject NewObjectOnPosition(string name, Vector3 pos, string objAnchor = "") {
+	public GameObject NewObjectOnPosition(string name, Vector3 pos, Anchor objAnchor = Anchor.NONE) {
 		GameObject obj = LoadAsset(name);
 		return NewObjectOnPosition(obj, pos, objAnchor);
 	}
 
-	public GameObject NewObjectOnPosition(GameObject obj, Vector3 pos, string objAnchor = "") {
-		if (objAnchor != "") {
-			Transform anchor = obj.GetComponent<AssetData>().anchorsList[objAnchor];
-			return Instantiate(obj, pos + anchor.position, anchor.rotation);
-		}
+	public GameObject NewObjectOnPosition(string name, Transform crd, Anchor objAnchor = Anchor.NONE) {
+		GameObject obj = LoadAsset(name);
+		return NewObjectOnPosition(obj, crd, objAnchor);
+	}
+
+	public GameObject NewObjectOnPosition(GameObject obj, Vector3 pos, Anchor objAnchor = Anchor.NONE) {
+		obj.GetComponent<AssetData>().instantiationAnchor = GetAnchorName(objAnchor);
 		return Instantiate(obj, pos, Quaternion.identity);
+	}
+
+	public GameObject NewObjectOnPosition(GameObject obj, Transform crd, Anchor objAnchor = Anchor.NONE) {
+		obj.GetComponent<AssetData>().instantiationAnchor = GetAnchorName(objAnchor);
+		return Instantiate(obj, crd);
 	}
 }

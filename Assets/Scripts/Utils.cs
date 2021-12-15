@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 public class ScriptUtils {
 	private ScriptUtils() {}
@@ -26,5 +27,23 @@ public class UDictionary<T, U> : List<UDictionaryItem<T, U>> {
 			dictionnary.Add(item.key, item.value);
 		});
 		return dictionnary;
+	}
+}
+
+public class GoodBehaviour : MonoBehaviour {
+	void Start() {
+		BeforeStart();
+		startMethods.ForEach((Action method) => {
+			method();
+		});
+		AfterStart();
+	}
+
+	protected virtual void BeforeStart() {}
+	protected virtual void AfterStart() {}
+
+	private List<Action> startMethods = new List<Action>();
+	public void AddStartMethod(Action method) {
+		startMethods.Add(method);
 	}
 }
