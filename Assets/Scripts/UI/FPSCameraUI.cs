@@ -7,12 +7,12 @@ public class FPSCameraUI : MonoBehaviour
 	private VisualTreeAsset modelsListEntry;
 
 	[SerializeField]
-	private Transform previewAnchor;
+	private Camera previewCamera;
 
 	void OnEnable() {
 		UIDocument uiDocument = GetComponent<UIDocument>();
 
-		(new PreviewContainerController()).InitializePreviewImageContainer(uiDocument.rootVisualElement, previewAnchor);
+		(new PreviewContainerController()).InitializePreviewImageContainer(uiDocument.rootVisualElement, previewCamera);
 		(new ModelsListController()).InitializeModelsList(uiDocument.rootVisualElement, modelsListEntry);
 	}
 }
