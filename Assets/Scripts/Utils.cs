@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Valve.VR.InteractionSystem;
 
 public class ScriptUtils {
 	private ScriptUtils() {}
@@ -30,20 +31,50 @@ public class UDictionary<T, U> : List<UDictionaryItem<T, U>> {
 	}
 }
 
-public class GoodBehaviour : MonoBehaviour {
-	void Start() {
-		BeforeStart();
-		startMethods.ForEach((Action method) => {
-			method();
+public abstract class GoodBehaviour : MonoBehaviour {
+	protected abstract void Initialize(GameObject original);
+
+	public List<Action<GameObject>> afterInstantiationCallbacks = new List<Action<GameObject>>();
+
+	private static void InitializeClone(GameObject original, GameObject clone) {
+		clone.GetComponents<GoodBehaviour>().ForEach((GoodBehaviour behaviour) => {
+			behaviour.Initialize(original);
 		});
-		AfterStart();
+		original.GetComponents<GoodBehaviour>().ForEach((GoodBehaviour behaviour) => {
+			behaviour.afterInstantiationCallbacks.ForEach((Action<GameObject> callback) => {
+				callback(clone);
+			});
+		});
 	}
 
-	protected virtual void BeforeStart() {}
-	protected virtual void AfterStart() {}
-
-	private List<Action> startMethods = new List<Action>();
-	public void AddStartMethod(Action method) {
-		startMethods.Add(method);
+	public static GameObject Instantiate(GameObject original) {
+		GameObject clone = MonoBehaviour.Instantiate(original);
+		InitializeClone(original, clone);
+		return clone;
 	}
+
+	public static GameObject Instantiate(GameObject original, Transform parent){
+		GameObject clone = MonoBehaviour.Instantiate(original, parent);
+		InitializeClone(original, clone);
+		return clone;
+	}
+
+	public static GameObject Instantiate(GameObject original, Transform parent, bool instantiateInWorldSpace){
+		GameObject clone = MonoBehaviour.Instantiate(original, parent, instantiateInWorldSpace);
+		InitializeClone(original, clone);
+		return clone;
+	}
+
+	public static GameObject Instantiate(GameObject original, Vector3 position, Quaternion rotation){
+		GameObject clone = MonoBehaviour.Instantiate(original, position, rotation);
+		InitializeClone(original, clone);
+		return clone;
+	}
+
+	public static GameObject Instantiate(GameObject original, Vector3 position, Quaternion rotation, Transform parent){
+		GameObject clone = MonoBehaviour.Instantiate(original, position, rotation, parent);
+		InitializeClone(original, clone);
+		return clone;
+	}
+
 }

@@ -4,25 +4,10 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
-public enum Anchor {
-	FRONT,
-	BACK,
-	LEFT,
-	RIGHT,
-	MIDDLE,
-	NONE,
-}
-
 public class ObjectFactory : MonoBehaviour
 {
 	public static ObjectFactory instance {get; private set;}
 	public static string assetBundlesPath = Path.Combine(Application.streamingAssetsPath, "ObjectsModels");
-
-	public static string GetAnchorName(Anchor anchor) {
-		return anchorNames[(int)anchor];
-	}
-
-	private static string[] anchorNames = new string[] { "Anchor Front", "Anchor Back", "Anchor Left", "Anchor Right", "Anchor True Middle", "" };
 
 	private Dictionary<string, GameObject> assets = new Dictionary<string, GameObject>();
 
@@ -51,12 +36,12 @@ public class ObjectFactory : MonoBehaviour
 	}
 
 	public GameObject NewObjectOnPosition(GameObject obj, Vector3 pos, Anchor objAnchor = Anchor.NONE) {
-		obj.GetComponent<AssetData>().instantiationAnchor = GetAnchorName(objAnchor);
-		return Instantiate(obj, pos, Quaternion.identity);
+		obj.GetComponent<AssetData>().instantiationAnchor = AssetData.GetAnchorName(objAnchor);
+		return GoodBehaviour.Instantiate(obj, pos, Quaternion.identity);
 	}
 
 	public GameObject NewObjectOnPosition(GameObject obj, Transform crd, Anchor objAnchor = Anchor.NONE) {
-		obj.GetComponent<AssetData>().instantiationAnchor = GetAnchorName(objAnchor);
-		return Instantiate(obj, crd);
+		obj.GetComponent<AssetData>().instantiationAnchor = AssetData.GetAnchorName(objAnchor);
+		return GoodBehaviour.Instantiate(obj, crd);
 	}
 }
